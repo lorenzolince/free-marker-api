@@ -1,0 +1,61 @@
+<#global currentPage = 1>
+
+
+<#-- TEMPLATE FOR EMPTY PAGES -->
+<#macro blankPage number singlePage>
+    <@header></@header>
+    <#if (singlePage == "false")>
+        <#list 1..number as i>
+            <#nested>
+        </#list>
+    <#else>
+        <#nested>
+    </#if>
+</#macro>
+
+
+<#macro fixedPagesSection pageNumber=1 contentClass="blank" contentText="null" singlePage="true">
+
+    <#global pageBreakCount=0>
+    <#local captured><#nested></#local>
+    ${captured}<#t>
+
+    <@blankPage number=(pageNumber - pageBreakCount) singlePage=singlePage>
+        <div class="${contentClass}">
+            <div class="content">
+
+                <#if contentText != "null">
+                    ${contentText}
+                <#elseif ((pageNumber - pageBreakCount) > 1)>
+                    Siderne ${currentPage} til ${currentPage + (pageNumber - pageBreakCount)} er blanke.
+                    <#global currentPage += (pageNumber - pageBreakCount)>
+                <#else>
+                    Side ${currentPage} er blank.
+                </#if>
+
+            </div>
+        </div>
+    </@blankPage>
+
+    <#global pageBreakCount=0>
+
+</#macro>
+
+<!-- TEMPLATE HEADER -->
+<#macro header>
+    <div id="header">
+        <div class="left">${pdfCode!}</div>
+        <div class="center">${pdfStatus!} #${pdfVersion!}</div>
+        <div class="right"><span id="pagenumber" />${currentPage!}</div>
+    </div>
+</#macro>
+
+
+<!-- TEMPLATE FOOTER -->
+<#macro footer pageCode>
+    <div id="footer">
+        <div class="left">${pageCode!}</div>
+        <div class="center">${pdfTitle!}</div>
+        <div class="right">${generate_date!}</div>
+    </div>
+</#macro>

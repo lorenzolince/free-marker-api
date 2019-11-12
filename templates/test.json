@@ -1,0 +1,22 @@
+{    
+"code":1,
+"name":"Lorenzo Lince",
+"direction":{ 
+"name":"Panama Chorrera",
+"street":"6805"},
+"resourcePath":"templates",
+  "friends":[
+  {"name":"Carlos Lince", 
+    "tel":"6245-8966", 
+   "email":"carloslince@gmail.com"
+  },
+  {"name":"David Lince", 
+  "tel":"6245-5452", 
+  "email":"davidlince@gmail.com"
+  },
+  {"name":"Martha Jurado", 
+  "tel":"6218-6603", 
+  "email":"mart32@gmail.com"
+  }
+  ]
+}
